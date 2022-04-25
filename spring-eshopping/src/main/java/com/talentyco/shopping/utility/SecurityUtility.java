@@ -1,4 +1,4 @@
-package com.talentyco.shopping.domain.utility;
+package com.talentyco.shopping.utility;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
