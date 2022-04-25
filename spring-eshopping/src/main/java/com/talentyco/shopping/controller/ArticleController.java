@@ -1,7 +1,18 @@
 package com.talentyco.shopping.controller;
 
+import com.talentyco.shopping.domain.*;
+import com.talentyco.shopping.service.ArticleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping("/article")
@@ -20,7 +31,7 @@ public class ArticleController {
         return "addArticle";
     }
 
-    @RequestMapping(value="/add", method=RequestMethod.POST)
+    @RequestMapping(value="/add", method= RequestMethod.POST)
     public String addArticlePost(@ModelAttribute("article") Article article, HttpServletRequest request) {
         Article newArticle = new ArticleBuilder()
                 .withTitle(article.getTitle())
