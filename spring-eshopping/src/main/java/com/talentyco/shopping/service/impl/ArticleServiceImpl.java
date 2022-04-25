@@ -1,6 +1,82 @@
 package com.talentyco.shopping.service.impl;
 
-public class ArticleServiceImpl {
+import com.talentyco.shopping.domain.Article;
+import com.talentyco.shopping.repository.ArticleRepository;
+import com.talentyco.shopping.repository.ArticleSpecification;
+import com.talentyco.shopping.service.ArticleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
 
+@Service
+@Transactional
+public class ArticleServiceImpl implements ArticleService {
+
+    @Autowired
+    private ArticleRepository articleRepository;
+
+    @Value("{articleservice.featured-items-number}")
+    private int featuredArticleNumber;
+
+    @Override
+    public List<Article> findAllArticles() {
+        return (List<Article>) articleRepository.findAllEagerBy();
+    }
+
+    @Override
+    public Page<Article> findArticleByCriteria(Pageable pageable, Integer priceLow,
+                                               Integer priceHigh, List<String> sizes, List<String> categories, List<String> brands, String search) {
+        Page<Article> page = articleRepository.findAll(ArticleSpecification.filterBy(priceLow,priceHigh, sizes, categories, brands, search), pageable);
+        return page;
+    }
+
+    @Override
+    public List<Article> findFirstArticles() {
+        return articleRepository.findAll(PageRequest.of(0, featuredArticleNumber)).getContent();
+    }
+
+    @Override
+    public Article findArticleById(Long id) {
+        Optional<Article> optional = articleRepository.findById(id);
+        return optional.get();
+    }
+
+    @Override
+    @CacheEvict(value = { "sizes", "categories", "brands" }, allEntries = true)
+    public Article saveArticle(Article article) {
+        return articleRepository.save(article);
+    }
+
+    @Override
+    @CacheEvict(value = { "sizes", "categories", "brands" }, allEntries = true)
+    public void deleteArticleById(Long id) {
+        articleRepository.deleteById(id);
+    }
+
+    @Override
+    @Cacheable("sizes")
+    public List<String> getAllSizes() {
+        return articleRepository.findAllSizes();
+    }
+
+    @Override
+    @Cacheable("categories")
+    public List<String> getAllCategories() {
+        return articleRepository.findAllCategories();
+    }
+
+    @Override
+    @Cacheable("brands")
+    public List<String> getAllBrands() {
+        return articleRepository.findAllBrands();
+    }
 }
