@@ -1,6 +1,5 @@
 package com.talentyco.shopping.domain.security;
 
-import com.talentyco.shopping.domain.Role;
 import com.talentyco.shopping.domain.User;
 
 import javax.persistence.*;

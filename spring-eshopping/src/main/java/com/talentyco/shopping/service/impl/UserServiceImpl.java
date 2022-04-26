@@ -1,7 +1,7 @@
 package com.talentyco.shopping.service.impl;
 
-import com.talentyco.shopping.domain.Role;
 import com.talentyco.shopping.domain.User;
+import com.talentyco.shopping.domain.security.Role;
 import com.talentyco.shopping.domain.security.UserRole;
 import com.talentyco.shopping.utility.SecurityUtility;
 import com.talentyco.shopping.repository.RoleRepository;
