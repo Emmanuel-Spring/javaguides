@@ -41,6 +41,7 @@ public class ShoppingCartController {
             attributes.addFlashAttribute("notEnoughStock", true);
             return "redirect:/article-detail?id="+article.getId();
         }
+
         User user = (User) authentication.getPrincipal();
         shoppingCartService.addArticleToShoppingCart(article, user, Integer.parseInt(qty), size);
         attributes.addFlashAttribute("addArticleSuccess", true);
@@ -61,5 +62,6 @@ public class ShoppingCartController {
     public String removeItem(@RequestParam("id") Long id) {
         shoppingCartService.removeCartItem(shoppingCartService.findCartItemById(id));
         return "redirect:/shopping-cart/cart";
+
     }
 }
