@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @SpringBootApplication
 public class StreamApiTutorialApplication {
@@ -100,5 +101,36 @@ public class StreamApiTutorialApplication {
 						.findFirst()
 						.orElse(null);
 		System.out.println("\n\n\nStream findFirst Salary: \n" + firstEmployee);
+
+
+		// flatMap
+		String projects =
+			employees
+			.stream()
+			.map(employee -> employee.getProjects())
+			.flatMap(strings -> strings.stream())
+			.collect(Collectors.joining(", "));
+		System.out.println("\n\n\nStream flatMap projects: \n" + projects);
+
+
+		// Short Circuit operations
+		List<Employee> shortCircuit =
+			employees
+			.stream()
+			.skip(1)
+			.limit(1)
+			.collect(Collectors.toList());
+		System.out.println("\n\n\nStream Short Circuit: \n" + shortCircuit);
+
+
+		// Finite Data
+		System.out.println("\n\n\nStream Finite Data: \n");
+		Stream.generate(Math::random)
+				.limit(5)
+				.forEach(value -> System.out.println(value));
+
+
+		// Sorting
+
 	}
 }
