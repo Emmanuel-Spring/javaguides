@@ -27,7 +27,7 @@ public class StreamApiTutorialApplication {
 				new Employee("Nataly", "Silva", 11000.0, List.of("Project 2", "Project 6"))
 		);
 		employees.add(
-				new Employee("Martina", "Silva Nieto", 2300.0, List.of("Project 4", "Project 5"))
+				new Employee("Martina", "Silva", 2300.0, List.of("Project 4", "Project 5"))
 		);
 		employees.add(
 				new Employee("Federico", "Echeñique", 7800.0, List.of("Project 5", "Project 2"))
@@ -68,5 +68,37 @@ public class StreamApiTutorialApplication {
 						.collect(Collectors.toSet());
 		System.out.println("\n\n\nStream Set: \n" + increasedSalarySet);
 
+
+		// filter Stream
+		// findFirst
+		List<Employee> filterEmployee =
+				employees
+				.stream()
+				.filter(employee -> employee.getSalary() > 5000)
+				.map(employee -> new Employee(
+						employee.getLasttName(),
+						employee.getFirstName(),
+						employee.getSalary() * 1.10,
+						employee.getProjects()
+				))
+				.collect(Collectors.toList());
+		System.out.println("\n\n\nStream Filter Salary: \n" + filterEmployee);
+
+
+		// filter Stream
+		// findFirst
+		Employee firstEmployee =
+				employees
+						.stream()
+						.filter(employee -> employee.getSalary() > 8000)
+						.map(employee -> new Employee(
+								employee.getLasttName(),
+								employee.getFirstName(),
+								employee.getSalary() * 1.10,
+								employee.getProjects()
+						))
+						.findFirst()
+						.orElse(null);
+		System.out.println("\n\n\nStream findFirst Salary: \n" + firstEmployee);
 	}
 }
