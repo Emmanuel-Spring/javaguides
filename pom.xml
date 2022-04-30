@@ -16,6 +16,7 @@
 
 	<modules>
 		<module>spring-eshopping</module>
+		<module>stream-api-tutorial</module>
 	</modules>
 
 </project>
