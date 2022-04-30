@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @SpringBootApplication
 public class StreamApiTutorialApplication {
@@ -35,9 +37,36 @@ public class StreamApiTutorialApplication {
 	public static void main(String[] args) {
 		//SpringApplication.run(StreamApiTutorialApplication.class, args);
 
-		// foreach
+	// foreach
+		System.out.println("\nForEach Stream: \n");
 	employees.stream()
 			.forEach(employee -> System.out.println(employee));
+
+	// map
+	// Collect
+	List <Employee> increasedSalary =
+		employees.stream()
+			.map(employee -> new Employee(
+					employee.getLasttName(),
+					employee.getFirstName(),
+					employee.getSalary() * 1.10,
+					employee.getProjects()
+			))
+			.collect(Collectors.toList());
+		System.out.println("\n\n\nStream List (Map): \n" + increasedSalary);
+
+		// Set
+		// Collect
+		Set<Employee> increasedSalarySet =
+				employees.stream()
+						.map(employee -> new Employee(
+								employee.getLasttName(),
+								employee.getFirstName(),
+								employee.getSalary() * 1.10,
+								employee.getProjects()
+						))
+						.collect(Collectors.toSet());
+		System.out.println("\n\n\nStream Set: \n" + increasedSalarySet);
 
 	}
 }
