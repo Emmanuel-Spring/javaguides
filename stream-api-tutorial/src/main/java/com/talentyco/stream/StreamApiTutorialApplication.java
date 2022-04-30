@@ -4,9 +4,7 @@ import com.talentyco.stream.entities.Employee;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -124,13 +122,26 @@ public class StreamApiTutorialApplication {
 
 
 		// Finite Data
-		System.out.println("\n\n\nStream Finite Data: \n");
+		System.out.println("\n\n\nStream Finite Data: ");
 		Stream.generate(Math::random)
 				.limit(5)
 				.forEach(value -> System.out.println(value));
 
 
 		// Sorting
+		List<Employee> sortedEmployees =
+				employees
+						.stream()
+						.sorted((o1, o2) -> o1.getFirstName()
+								.compareToIgnoreCase(o2.getFirstName()))
+						.collect(Collectors.toList());
+		System.out.println("\n\n\nStream Sorting: \n" + sortedEmployees);
 
+
+		// min or max
+		employees
+				.stream()
+				.max(Comparator.comparing(Employee::getSalary))
+				.orElseThrow(NoSuchElementException::new);
 	}
 }
