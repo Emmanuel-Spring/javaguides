@@ -45,23 +45,6 @@ public class StreamApiTutorialApplication {
 	public static void main(String[] args) {
 		//SpringApplication.run(StreamApiTutorialApplication.class, args);
 
-	// foreach
-		System.out.println("\nForEach Stream: \n");
-	employees.stream()
-			.forEach(employee -> System.out.println(employee));
-
-	// map
-	// Collect
-	List <Employee> increasedSalary =
-		employees.stream()
-			.map(employee -> new Employee(
-					employee.getLasttName(),
-					employee.getFirstName(),
-					employee.getSalary() * 1.10,
-					employee.getProjects()
-			))
-			.collect(Collectors.toList());
-		System.out.println("\n\n\nStream List (Map): \n" + increasedSalary);
 
 		// Set
 		// Collect
