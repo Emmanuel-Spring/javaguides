@@ -31,6 +31,9 @@ public class StreamApiTutorialApplication {
 		employees.add(
 				new Employee("Federico", "Echeñique", 7800.0, List.of("Project 5", "Project 2"))
 		);
+		employees.add(
+				new Employee("Marianela", "Echeñique", 7800.0, List.of("Project 5", "Project 2"))
+		);
 	}
 
 	public static void main(String[] args) {
