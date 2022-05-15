@@ -46,61 +46,16 @@ public class StreamApiTutorialApplication {
 		//SpringApplication.run(StreamApiTutorialApplication.class, args);
 
 
-		// Set
-		// Collect
-		Set<Employee> increasedSalarySet =
-				employees.stream()
-						.map(employee -> new Employee(
-								employee.getLasttName(),
-								employee.getFirstName(),
-								employee.getSalary() * 1.10,
-								employee.getProjects()
-						))
-						.collect(Collectors.toSet());
-		System.out.println("\n\n\nStream Set: \n" + increasedSalarySet);
 
 
-		// filter Stream
-		// findFirst
-		List<Employee> filterEmployee =
-				employees
-				.stream()
-				.filter(employee -> employee.getSalary() > 5000)
-				.map(employee -> new Employee(
-						employee.getLasttName(),
-						employee.getFirstName(),
-						employee.getSalary() * 1.10,
-						employee.getProjects()
-				))
-				.collect(Collectors.toList());
-		System.out.println("\n\n\nStream Filter Salary: \n" + filterEmployee);
 
 
-		// filter Stream
-		// findFirst
-		Employee firstEmployee =
-				employees
-						.stream()
-						.filter(employee -> employee.getSalary() > 8000)
-						.map(employee -> new Employee(
-								employee.getLasttName(),
-								employee.getFirstName(),
-								employee.getSalary() * 1.10,
-								employee.getProjects()
-						))
-						.findFirst()
-						.orElse(null);
-		System.out.println("\n\n\nStream findFirst Salary: \n" + firstEmployee);
 
 
-		// flatMap
-		String projects =
-			employees
-			.stream()
-			.map(employee -> employee.getProjects())
-			.flatMap(strings -> strings.stream())
-			.collect(Collectors.joining(", "));
-		System.out.println("\n\n\nStream flatMap projects: \n" + projects);
+
+
+
+
 
 
 		// Short Circuit operations
