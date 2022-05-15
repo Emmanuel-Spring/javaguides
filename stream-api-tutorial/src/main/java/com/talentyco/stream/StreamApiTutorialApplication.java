@@ -40,58 +40,15 @@ public class StreamApiTutorialApplication {
 		employees.add(
 				new Employee("Andreina", "Betancurt", 8900.0, List.of("Project 9", "Project 7"))
 		);
+		employees.add(
+				new Employee("Alely", "Zaldivar", 12900.0, List.of("Project 9", "Project 7", "Project 10"))
+		);
 	}
 
 	public static void main(String[] args) {
 		//SpringApplication.run(StreamApiTutorialApplication.class, args);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-		// Short Circuit operations
-		List<Employee> shortCircuit =
-			employees
-			.stream()
-			.skip(1)
-			.limit(1)
-			.collect(Collectors.toList());
-		System.out.println("\n\n\nStream Short Circuit: \n" + shortCircuit);
-
-
-		// Finite Data
-		System.out.println("\n\n\nStream Finite Data: ");
-		Stream.generate(Math::random)
-				.limit(5)
-				.forEach(value -> System.out.println(value));
-
-
-		// Sorting
-		List<Employee> sortedEmployees =
-				employees
-						.stream()
-						.sorted((o1, o2) -> o1.getFirstName()
-								.compareToIgnoreCase(o2.getFirstName()))
-						.collect(Collectors.toList());
-		System.out.println("\n\n\nStream Sorting: \n" + sortedEmployees);
-
-
-		// min or max
-		employees
-				.stream()
-				.max(Comparator.comparing(Employee::getSalary))
-				.orElseThrow(NoSuchElementException::new);
-		
-		
 		// reduce
 		Double totalSalary = 
 				employees
