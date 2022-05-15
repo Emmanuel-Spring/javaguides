@@ -49,24 +49,9 @@ public class StreamApiTutorialApplication {
 		//SpringApplication.run(StreamApiTutorialApplication.class, args);
 
 
-		// reduce
-		Double totalSalary = 
-				employees
-						.stream()
-						.map(employee -> employee.getSalary())
-						.reduce(0.0, Double::sum);
-		System.out.println("\n\n\nStream Reduce Total Salary: \n" + totalSalary);
 
 
 
-		// reduce
-		// ParalelStream
-		Double totalSalaryParalel =
-				employees
-						.parallelStream()
-						.map(employee -> employee.getSalary())
-						.reduce(0.0, Double::sum);
-		System.out.println("\n\n\nStream Reduce Total Salary with ParalelStream() : \n" + totalSalaryParalel);
 
 		// reduce
 		// ParalStream
