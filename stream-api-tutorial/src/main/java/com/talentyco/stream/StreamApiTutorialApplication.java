@@ -5,8 +5,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @SpringBootApplication
 public class StreamApiTutorialApplication {
@@ -47,21 +45,6 @@ public class StreamApiTutorialApplication {
 
 	public static void main(String[] args) {
 		//SpringApplication.run(StreamApiTutorialApplication.class, args);
-
-
-
-
-
-
-		// reduce
-		// ParalStream
-		Double totalSalaryParalleStream =
-				employees.
-						parallelStream()
-						.map(employee -> employee.getSalary())
-						.reduce(0.0, Double::sum);
-		System.out.println("\n\n\nStream Reduce Total Salary with ParalelStream() : \n" + totalSalaryParalleStream);
-
 
 	}
 }
